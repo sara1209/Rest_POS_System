@@ -1,0 +1,79 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Fullscreen background */
+.login-container {
+  height: 105vh;
+  width: 100vw;
+  overflow: hidden;
+
+  background-image: url('/burger.png');
+  background-size: cover;              /* Fill full screen */
+  background-position: right center;    /* Start from LEFT */
+  background-repeat: no-repeat;
+
+  display: flex;
+}
+
+
+/* Left panel */
+.left-panel {
+  width: 450px;
+  margin-left: 80px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;   /* 🔥 Vertical Center */
+  align-items: center;       /* 🔥 Horizontal Center */
+
+  text-align: center;
+  gap: 30px;
+
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* PIN boxes */
+.pin-box {
+  display: flex;
+  gap: 15px;
+}
+
+.box {
+  width: 55px;
+  height: 55px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: black;
+}
+
+/* Keypad */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap: 15px;
+}
+
+.keypad button {
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.keypad button:hover {
+  background: rgba(0,0,0,0.8);
+}

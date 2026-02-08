@@ -1,0 +1,182 @@
+<!-- src/app/features/dashboard/dashboard.html -->
+
+<div class="dashboard">
+
+ <header class="top-header">
+    <!-- Background -->
+    <div class="header-bg"></div>
+
+    <!-- Cutlery logo (left) -->
+    <div class="logo-wrapper">
+      <img src="/icons/cutlery.png" alt="Cutlery" class="cutlery-icon">
+    </div>
+
+    <!-- Centered search bar -->
+    <div class="search-container">
+      <div class="search-bar">
+        <img src="/icons/search-interface-symbol.png" alt="Search" class="search-icon">
+        <!-- You can make this a real <input> if needed -->
+        <!-- <input type="text" placeholder="Search orders..." class="search-input"> -->
+      </div>
+    </div>
+
+    <!-- Right side: user info + logout -->
+    <div class="user-section">
+      <img src="/icons/user.png" alt="User" class="user-icon">
+
+      <div class="user-info">
+        <div class="user-name">Joe Hardward</div>
+        <div class="user-role">ADMIN</div>
+      </div>
+
+      <img src="assets/icons/exit.png" alt="Logout" class="logout-icon">
+    </div>
+  </header>
+
+  <div class="greeting">
+    <h2>Good Morning, Joe</h2>
+    <p>Sunday, 27th December 2026</p>
+  </div>
+
+  <div class="order-type">
+    <button class="active">Dining</button>
+    <button>Parcels</button>
+  </div>
+
+  <div class="content">
+
+    <div class="orders-grid">
+      @for (order of orders; track order.id) {
+        <div class="order-card"
+             [class.selected]="selectedOrder?.id === order.id"
+             (click)="selectOrder(order)">
+
+          <div class="avatar" [style.background-color]="order.avatarColor || '#EA6868'">
+            {{ order.avatarInitials }}
+          </div>
+
+          <div class="main-info">
+            <div class="customer-name">{{ order.customerName }}</div>
+            <div class="order-meta">
+              {{ order.orderNumber }} / {{ order.type }}
+              @if (order.table) {
+                <br>Table → {{ order.table }}
+              }
+            </div>
+            <div class="timestamp">{{ order.timestamp }}</div>
+          </div>
+
+          <div class="right-column">
+            <div class="status-line">
+              <span class="status">{{ order.status }}</span>
+              @if (order.status === 'Ready to Serve') {
+                <span class="ready-badge">Ready</span>
+              }
+            </div>
+            <div class="item-count">{{ order.itemsCount }} Item{{ order.itemsCount !== 1 ? 's' : '' }}</div>
+            <div class="total-line">
+              <span class="total-label">Total</span>
+              <span class="total-amount">₹ {{ order.total | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">No orders available</div>
+      }
+    </div>
+
+     @if (selectedOrder; as order) {
+  <div class="order-details">
+
+    <!-- Header -->
+    <div class="order-header">
+      <div class="customer-name">Will Byrce</div>
+      <div class="order-type-badge">#{{ order.orderNumber }} / {{ order.type }}</div>
+    </div>
+
+    <div class="order-meta">
+      <div class="timestamp">{{ order.timestamp || 'February 09, 2025 at 09:28:48 PM' }}</div>
+    </div>
+
+    <!-- Items -->
+    @for (item of order.items ?? []; track $index) {
+      <div class="order-item">
+        <div class="item-left">
+          <span class="item-name">{{ item.name }}</span>
+          <div class="item-controls">
+            <!-- Fixed: clean event bindings, no extra characters -->
+            <button class="action-icon delete" >🗑️</button>
+            <button class="action-icon collect" >📦</button>
+          </div>
+        </div>
+        <div class="item-right">
+          <span class="quantity">x{{ item.quantity }}</span>
+          <span class="price">₹{{ (item.price * item.quantity) || 120 | number:'1.0-0' }}</span>
+        </div>
+      </div>
+    }
+
+    <!-- Summary -->
+    <div class="summary">
+      <div class="summary-row">
+        <span>Items ({{ order.items?.length || order.itemsCount || 0 }})</span>
+        <span>₹{{ order.total | number:'1.0-0' }}</span>
+      </div>
+      <div class="summary-row tax">
+        <span>Tax</span>
+        <span>₹20</span>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="action-buttons">
+      <button class="btn print">Cash</button>
+      <button class="btn place">Online</button>
+      <button class="btn print">Print Receipt</button>
+      <button class="btn place">Place Order</button>
+    </div>
+
+  </div>
+} @else {
+  <div class="order-details empty">
+    <p>Select an order to see details</p>
+  </div>
+}
+
+  </div>
+
+  <div class="bottom-nav">
+  <div class="nav-item" 
+       [class.active]="activeTab === 'home'" 
+       (click)="setActive('home')">
+    <img src="/icons/home.png" alt="Home" class="nav-icon pink" />
+    <img src="/icons/homewhite.png" alt="Home" class="nav-icon white" />
+    <span>Home</span>
+  </div>
+
+  <div class="nav-item" 
+       [class.active]="activeTab === 'orders'" 
+       (click)="setActive('orders')">
+    <img src="/icons/list.png" alt="Orders" class="nav-icon pink" />
+    <img src="/icons/listwhite.png" alt="Orders" class="nav-icon white" />
+    <span>Orders</span>
+  </div>
+
+  <div class="nav-item" 
+       [class.active]="activeTab === 'tables'" 
+       (click)="setActive('tables')">
+    <img src="/icons/table.png" alt="Tables" class="nav-icon pink" />
+    <img src="/icons/tablewhite.png" alt="Tables" class="nav-icon white" />
+    <span>Tables</span>
+  </div>
+
+  <div class="nav-item" 
+       [class.active]="activeTab === 'more'" 
+       (click)="setActive('more')">
+    <img src="/icons/more.png" alt="More" class="nav-icon pink" />
+    <img src="/icons/morewhite.png" alt="More" class="nav-icon white" />
+    <span>More</span>
+  </div>
+</div>
+
+</div>
