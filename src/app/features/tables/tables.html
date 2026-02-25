@@ -1,0 +1,47 @@
+<!-- src/app/features/tables/tables.html -->
+<div class="desktop-container">
+
+  <!-- Title + Back -->
+  <div class="page-header">
+    <button class="back-btn">
+      <div class="ellipse"></div>
+      <img src="/icons/back.png" alt="Back" class="back-icon">
+    </button>
+
+    <h1 class="title">Tables</h1>
+  </div>
+
+  <!-- Tables Grid -->
+  <div class="tables-grid">
+    <div class="table-card" *ngFor="let table of posState.tables()" (click)="onTableClick(table)">
+
+      <!-- This is the Figma "Rectangle 44" – full background -->
+      <div class="card-background"></div>
+
+      <!-- All content positioned relatively or absolutely inside -->
+      <div class="card-content">
+
+        <!-- Header: Table label + status -->
+        <div class="card-header">
+          <span class="table-label">Table → {{ table.number }}</span>
+          <span class="status-badge" [ngClass]="table.status">
+            {{ table.status | titlecase }}
+          </span>
+        </div>
+
+        <!-- Main visual part -->
+        <div class="card-body">
+          <div class="label-circle" [ngClass]="getCircleClass(table)">
+            {{ table.label }}
+          </div>
+        </div>
+
+        <!-- Seats -->
+        <div class="seats-label">Seats : 4</div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

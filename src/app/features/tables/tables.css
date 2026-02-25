@@ -1,0 +1,351 @@
+.desktop-container {
+  
+  height: 100vh;
+  background: #262837;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+
+}
+
+/* Container for the whole header section */
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 20px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.back-btn {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.ellipse {
+  position: absolute;
+  inset: 0;
+  background: #3399FF;
+  border-radius: 50%;
+}
+
+.back-icon {
+  position: absolute;
+  inset: 6px;                    /* centers 30×30 icon inside 42×42 */
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.title {
+  margin-left: 16px;             /* space after button */
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: white;
+  margin: 0;
+}
+
+.top-header {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  background: transparent; 
+  z-index: 100;
+}
+
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background: #1F1D2C;
+  z-index: -1;
+}
+
+.logo-wrapper {
+  position: absolute;
+  left: 1.53%;          
+  top: 17.78%;           
+  width: 55px;
+  height: 55px;
+}
+
+.cutlery-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.search-container {
+  position: absolute;
+  left: 27.43%;
+  right: 27.43%;
+  top: 18.89%;
+  bottom: 17.78%;
+}
+
+.search-container {
+  position: absolute;
+  left: 27.43%;
+  right: 27.43%;
+  top: 18.89%;
+  bottom: 17.78%;
+}
+
+.search-input {
+  width: 100%;
+  height: 100%;
+  background: #262837;
+  box-shadow: 2px 4px 4px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: none;
+  padding: 0 16px 0 48px;           
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+
+  &::placeholder {
+    color: #aaaaaa;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.35);
+    background: #2a2c3e;            
+  }
+}
+
+.user-section {
+  position: absolute;
+  right: 1.94%;          
+  top: 27px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;    
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.user-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+.user-role {
+  font-family: 'Geologica', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1;
+  color: #FFFFFF;
+  margin-top: 3px;
+  text-align: center;
+}
+
+.logout-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.title-section {
+  position: absolute;
+  top: 120px;
+  left: 113px;
+
+  .back-title {
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .back-icon {
+      height: 42px;
+      width: 42px;
+    }
+  }
+}
+
+.tables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 380px);
+  gap: 30px 40px;               /* ≈ Figma spacing */
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* Each table card container */
+.table-card {
+  position: relative;
+  width: 380px;
+  height: 220px;
+  border-radius: 15px;
+  overflow: hidden;               /* important – clips inner absolute elements */
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.table-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+/* Figma Rectangle 44 – exact background */
+.card-background {
+  position: absolute;
+  inset: 0;                       /* left:0 right:0 top:0 bottom:0 */
+  background: #1F1D2C;
+  border-radius: 15px;
+}
+
+/* All visible content – positioned relatively */
+.card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ───────────── Header ───────────── */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-label {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 100%;
+  color: #FFFFFF;
+}
+
+.status-badge {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+.status-badge.booked {
+  background: #00FF00;
+  color: #262837;
+}
+
+.status-badge.available {
+  background: #FFC107;
+  color: #1F1D2C;
+}
+
+/* ───────────── Body (circle + number + arrow) ───────────── */
+.card-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 20px 0;
+}
+
+.table-number {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 72px;                /* big number like Figma */
+  line-height: 100%;
+  color: #FFFFFF;
+}
+
+.right-arrow {
+  width: 30px;
+  height: 30px;
+}
+
+.label-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 32px;
+  color: white;
+}
+
+/* Circle colors – match your earlier logic */
+.label-circle.blue   { background: #3399FF; }
+.label-circle.red    { background: #EA6868; }
+.label-circle.green  { background: #00FF00; }
+
+/* ───────────── Seats label (bottom) ───────────── */
+.seats-label {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  color: #FFFFFF;
+  text-align: center;
+}
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: #1F1D2C;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+
+    img {
+      height: 48px;
+    }
+
+    &.active {
+      color: #FFFFFF;
+    }
+  }
+}

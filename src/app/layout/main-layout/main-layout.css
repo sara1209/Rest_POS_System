@@ -1,0 +1,21 @@
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #262837;
+  padding-bottom: 80px;
+  /* Space for bottom nav */
+  box-sizing: border-box;
+}
+
+.content {
+  /* This class seems to be replaced by .main-content based on the edit,
+     but if it's still needed, its properties would be different.
+     Assuming .main-content takes over its role for scrolling content. */
+}

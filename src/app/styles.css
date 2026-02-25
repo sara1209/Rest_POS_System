@@ -1,0 +1,62 @@
+/* src/app/styles.css */
+:root {
+    /* Core Colors */
+    --primary-color: #EA6868;
+    --primary-hover: #d95e5e;
+
+    /* Backgrounds */
+    --bg-dark: #262837;
+    /* Main background */
+    --bg-darker: #1F1D2C;
+    /* Cards / Sidebar */
+    --bg-darkest: #1a1f2e;
+    /* Bottom Nav / Sidebar active */
+    --bg-lighter: #2a3045;
+    /* Buttons / Inputs */
+
+    /* Text */
+    --text-white: #ffffff;
+    --text-gray: #e0e0e0;
+    --text-muted: #abbbc2;
+
+    /* Accents */
+    --accent-blue: #6699ff;
+    --accent-green: #00ff44;
+    --accent-red: #ff4444;
+
+    /* Spacing */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,4 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import './app/styles.css';
 import { provideRouter, RouterOutlet } from '@angular/router';
 import { Component } from '@angular/core';
 import { routes } from './app/app.routes';
@@ -9,7 +10,7 @@ import { routes } from './app/app.routes';
   imports: [RouterOutlet],  // ✅ Must be here
   template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {}
+export class AppComponent { }
 
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(routes)]

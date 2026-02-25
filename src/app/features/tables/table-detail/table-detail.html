@@ -1,0 +1,122 @@
+<div class="pos-container">
+    <!-- TOP HEADER -->
+    <header class="pos-header">
+        <div class="logo-section">
+            <div class="logo-icon">🍽️</div>
+        </div>
+        <div class="search-section">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search menu..." (input)="onSearch($event)">
+            </div>
+        </div>
+        <div class="user-section">
+            <div class="user-info">
+                <span class="user-name">Joe Hardward</span>
+                <span class="user-role">ADMIN</span>
+            </div>
+            <div class="user-avatar">👤</div>
+            <button class="logout-btn">
+                <span class="logout-icon">↩️</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <!-- LEFT: Menu Selection -->
+        <div class="menu-section">
+            <div class="menu-nav">
+                <button class="back-btn" (click)="goBack()">
+                    <span class="back-icon">⬅️</span>
+                </button>
+                <h2>Menu</h2>
+            </div>
+
+            <!-- Category Grid -->
+            <div class="categories-grid">
+                <div class="category-card" *ngFor="let cat of categories()"
+                    [class.active]="selectedCategory() === cat.id" [style.background-color]="cat.color"
+                    (click)="selectCategory(cat.id)">
+                    <div class="category-info">
+                        <h3>{{ cat.name }}</h3>
+                        <span class="item-count">6 items</span>
+                    </div>
+                    <div class="category-icon-overlay" *ngIf="selectedCategory() === cat.id">🔘</div>
+                </div>
+            </div>
+
+            <!-- Product Items Grid -->
+            <div class="products-grid">
+                <div class="product-card" *ngFor="let product of filteredProducts()">
+                    <div class="product-top">
+                        <div class="product-name">{{ product.name }}</div>
+                        <div class="cart-icon">🛒</div>
+                    </div>
+                    <div class="product-price">₹ {{ product.price }}</div>
+                    <div class="product-actions">
+                        <div class="quantity-control">
+                            <button class="qty-btn minus" (click)="decreaseQty(product)">-</button>
+                            <span class="qty-value">{{ getItemQuantity(product.id) }}</span>
+                            <button class="qty-btn plus" (click)="increaseQty(product)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Order Sidebar -->
+        <div class="order-sidebar">
+            <div class="customer-card">
+                <div class="customer-info">
+                    <div class="customer-name">Will Byrce</div>
+                    <div class="order-id">#ORD-20250204-001</div>
+                    <div class="order-time">February 04, 2025 at 09:30 AM</div>
+                </div>
+                <div class="customer-initials">WB</div>
+            </div>
+
+            <div class="order-details-header">Order Details</div>
+
+            <div class="order-items-list">
+                <div class="order-item" *ngFor="let item of activeTable()?.currentOrder">
+                    <div class="item-main">
+                        <div class="item-name">{{ item.product.name }}</div>
+                        <div class="item-actions">
+                            <button class="delete-btn" (click)="posState.removeFromOrder(item.product.id)">🗑️</button>
+                            <button class="edit-btn">📝</button>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <span class="item-qty">x{{ item.quantity }}</span>
+                        <span class="item-price">₹ {{ item.product.price * item.quantity }}</span>
+                    </div>
+                </div>
+
+                <div *ngIf="!activeTable()?.currentOrder?.length" class="empty-cart">
+                    No items in order
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <div class="summary-row">
+                    <span>Items({{ (activeTable()?.currentOrder || []).length }})</span>
+                    <span>₹ {{ activeOrderTotal() }}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span>₹ {{ taxAmount() }}</span>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <button class="payment-btn active">Cash</button>
+                <button class="payment-btn">Online</button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="print-btn">Print Receipt</button>
+                <button class="place-order-btn">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>
